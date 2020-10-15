@@ -66,9 +66,6 @@ export default {
      */
     return Promise.resolve();
   },
-  mounted(){
-    console.log("BUDGET WAS MOUNTED");
-  }
 };
 </script>
 

@@ -1,5 +1,5 @@
 {
-  "currentVersion": "v3.7.2",
+  "currentVersion": "v3.7.3",
   "generators": {
     "blueprintDirectory": "./.vuesion/generators",
     "outputDirectory": "./src/app",
@@ -24,7 +24,7 @@
   },
   "spa": {
     "appShellRoute": "/",
-    "additionalRoutes": ["/form"]
+    "additionalRoutes": ["/example/form"]
   },
   "devServer": {
     "watchOptions": {

@@ -1,8 +1,8 @@
-import { Budget } from '../shared/model/budget';
-import { budget } from '../shared/factory';
 export interface IBudgetState {
-  budgets: Budget[];
-  budget: Budget | undefined;
+  /**
+   * put your state attributes here, for example:
+   * myAttribute: any;
+   */
 }
 
 export const BudgetDefaultState = (): IBudgetState => {
@@ -11,7 +11,5 @@ export const BudgetDefaultState = (): IBudgetState => {
      * put your default value here, for example:
      * myAttribute: null,
      */
-    budgets: [budget()],
-    budget: undefined,
   };
 };

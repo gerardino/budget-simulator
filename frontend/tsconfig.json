@@ -17,10 +17,8 @@
       "@components/*": ["src/app/shared/components/*"],
       "@static/*": ["src/static/*"]
     },
-    "rootDirs": ["src"],
-    "types": ["node"]
+    "rootDirs": ["src"]
   },
   "include": ["./src/**/*", "./src/**/*.vue"],
-  "exclude": ["./node_modules", "./dist"],
-  "references": ["../data-model/model/"]
+  "exclude": ["./node_modules", "./dist"]
 }
