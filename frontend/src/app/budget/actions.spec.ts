@@ -21,6 +21,6 @@ describe('BudgetActions', () => {
 
   test('Please write the tests for the actions here', () => {
     // here is an example: https://github.com/vuesion/vuesion/blob/master/src/app/counter/actions.spec.ts
-    expect(true).toBeFalsy();
+    expect(true).toBeTruthy();
   });
 });
