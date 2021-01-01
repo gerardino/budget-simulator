@@ -26,5 +26,9 @@
   "components.pagination.next": "Next",
   "components.pagination.previous": "Previous",
   "components.truncate.showLess": "Show less",
-  "components.truncate.showMore": "Show more"
+  "components.truncate.showMore": "Show more",
+  "common": {
+    "home": "home",
+    "Budget": "Budgets"
+  }
 }

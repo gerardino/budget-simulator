@@ -1,15 +1,14 @@
+import { budget } from 'budget-data-model/bin/factory';
+import { Budget } from 'budget-data-model/bin/model/budget';
+
 export interface IBudgetState {
-  /**
-   * put your state attributes here, for example:
-   * myAttribute: any;
-   */
+  budgets: Budget[];
+  selected: number | null;
 }
 
 export const BudgetDefaultState = (): IBudgetState => {
   return {
-    /**
-     * put your default value here, for example:
-     * myAttribute: null,
-     */
+    budgets: [budget(), budget(), budget()],
+    selected: null,
   };
 };
