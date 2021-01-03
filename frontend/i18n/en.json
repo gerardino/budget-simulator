@@ -29,6 +29,7 @@
   "components.truncate.showMore": "Show more",
   "common": {
     "home": "home",
-    "Budget": "Budgets"
+    "Budget": "Budgets",
+    "Scenario": "Scenario"
   }
 }

@@ -6,6 +6,7 @@ import { VuexPersist } from '@vuesion/addon-vuex-persist';
 import { PersistCookieStorage } from '@vuesion/addon-vuex-persist/dist/PersistCookieStorage';
 import { AppModule } from './app/module';
 import { AuthModule } from '@shared/modules/auth/module';
+import { StoreActions } from './actions';
 
 Vue.use(Vuex);
 
@@ -21,6 +22,7 @@ const beforePersistCookieStorage = (localState: IState): IState => {
 };
 
 export const store: Store<IState> = new Vuex.Store({
+  actions: { ...StoreActions },
   state,
   plugins: [
     VuexPersist([

@@ -62,8 +62,8 @@ export default {
     VueButton,
   },
   methods: {
-    goToScenario(scenario: number) {
-      console.log(`GOING TO`, scenario);
+    goToScenario(id: number) {
+      this.$store.dispatch('select', { id });
     },
   },
   computed: {
@@ -76,9 +76,6 @@ export default {
     ...mapState({
       budgets(state: IState): Budget[] {
         return state.budget.budgets;
-      },
-      budget(state: IBudgetState): Budget | null {
-        return state.selected !== null ? state.budgets[state.selected] : null;
       },
     }),
   },
