@@ -18,6 +18,8 @@ export const StoreActions: IStoreActions = {
       if (budget) {
         commit('scenario/set', budget);
         router.push({ name: 'scenario', params: { id } as any });
+      } else {
+        router.push({ name: 'budget'});
       }
     }
   },

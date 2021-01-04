@@ -2,10 +2,18 @@
   <div :class="$style.scenario">
     <vue-grid>
       <vue-breadcrumb :items="breadCrumbItems"></vue-breadcrumb>
-
       <vue-grid-row>
         <vue-grid-item fill>
           <vue-headline level="1">Scenario</vue-headline>
+        </vue-grid-item>
+      </vue-grid-row>
+      <vue-grid-row>
+        <vue-grid-item>
+          <banks :datasource="banks"></banks>
+          <!-- TOTALS -->
+        </vue-grid-item>
+        <vue-grid-item>
+          <!-- RIGHT SECTION -->
         </vue-grid-item>
       </vue-grid-row>
     </vue-grid>
@@ -21,8 +29,13 @@ import VueGridRow from '@/app/shared/components/VueGridRow/VueGridRow.vue';
 import VueGridItem from '@/app/shared/components/VueGridItem/VueGridItem.vue';
 import VueButton from '@/app/shared/components/VueButton/VueButton.vue';
 import VueHeadline from '@/app/shared/components/VueHeadline/VueHeadline.vue';
+import Banks from '../Banks/Banks.vue';
+import { IState } from '@/app/state';
 
 import { ScenarioModule } from '../module';
+import { mapState } from 'vuex';
+import { Budget } from 'budget-data-model/bin/model/budget';
+import { Bank } from 'budget-data-model/bin/model/bank';
 
 export default {
   metaInfo: {
@@ -35,7 +48,9 @@ export default {
     VueGridItem,
     VueButton,
     VueHeadline,
+    Banks,
   },
+  props: ['id'],
   methods: {},
   computed: {
     breadCrumbItems() {
@@ -45,6 +60,21 @@ export default {
         { label: this.$t('common.Scenario' /* Scenario */), href: '#' },
       ];
     },
+    ...mapState({
+      budget(state: IState): Budget {
+        return state.scenario.budget;
+      },
+
+      // Returns the banks as an array
+      banks(state: IState): Bank[] {
+        const {
+          scenario: {
+            budget: { banks },
+          },
+        } = state;
+        return Object.keys(banks).map((k) => banks[k]);
+      },
+    }),
   },
   beforeCreate() {
     registerModule('scenario', ScenarioModule);
@@ -67,9 +97,10 @@ export default {
     return Promise.resolve();
   },
   mounted() {
-    if (!this.$store.state.scenario.budget) {
-      console.log(`[scenario.vue] Budget not loaded yet.`);
-    }
+    // if (!this.$store.state.scenario.budget) {
+    //   console.log(`[scenario.vue] Budget not loaded yet.`);
+    //   this.$store.dispatch('select', { id: this.id });
+    // }
   },
 };
 </script>

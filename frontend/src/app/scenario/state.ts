@@ -1,3 +1,4 @@
+import { budget } from 'budget-data-model/bin/factory/budget';
 import { Budget } from 'budget-data-model/bin/model/budget';
 
 export interface IScenarioState {
@@ -5,5 +6,7 @@ export interface IScenarioState {
 }
 
 export const ScenarioDefaultState = (): IScenarioState => {
-  return {};
+  return {
+    budget: budget(),
+  };
 };
