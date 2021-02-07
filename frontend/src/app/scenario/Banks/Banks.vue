@@ -1,18 +1,16 @@
 <template>
   <div :class="$style.banks">
-    <vue-data-table :header="header" :data="bankList" :show-search="false" :max-rows="datasource.length" />
+    <finance-table :header="header" :datasource="bankList" />
   </div>
 </template>
 
 <script lang="ts">
 import { Bank } from 'budget-data-model/bin/model/bank';
-import VueDataTable from '@/app/shared/components/VueDataTable/VueDataTable.vue';
+import FinanceTable from '@/app/shared/components/FinanceTable/FinanceTable.vue';
 
 export default {
   name: 'Banks',
-  components: {
-    VueDataTable,
-  },
+  components: { FinanceTable },
   props: ['datasource'],
   data: (): any => ({
     header: {
@@ -23,22 +21,24 @@ export default {
       amount: {
         title: 'Amount',
         sortable: false,
-        slot: 'currency'
+        slot: 'currency',
       },
     },
   }),
   computed: {
     bankList: function() {
-      return this.datasource.map(banks => ({
-        name: `[${banks.code}] ${banks.name}`,
-        amount: `${banks.amount.toFixed(2)} ${banks.currency}`
-      }));
+      return this.datasource.map((bank) => {
+        const currency = this.$store.getters['scenario/currency'](bank.currency);
+        return {
+          name: `[${bank.code}] ${bank.name}`,
+          amount: `${currency.symbol} ${bank.amount.toFixed(2)}`,
+        };
+      });
     },
   },
   methods: {},
 
-  mounted() {
-  },
+  mounted() {},
 };
 </script>
 
@@ -47,5 +47,10 @@ export default {
 
 .banks {
   // this class is only applied if you add css properties
+}
+thead {
+  th {
+    background-color: $brand-bg-color-variant;
+  }
 }
 </style>

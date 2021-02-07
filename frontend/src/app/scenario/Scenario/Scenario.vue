@@ -9,11 +9,26 @@
       </vue-grid-row>
       <vue-grid-row>
         <vue-grid-item>
-          <banks :datasource="banks"></banks>
+          <div>
+            <vue-headline level="2">Bank Accounts</vue-headline>
+            <banks :datasource="banks"></banks>
+          </div>
+          <div>
+            <vue-headline level="2">Transfers</vue-headline>
+            <transfers :datasource="transfers"></transfers>
+          </div>
+          <div>
+            <vue-headline level="2">Excercise Result</vue-headline>
+            <banks :datasource="bankResults"></banks>
+          </div>
           <!-- TOTALS -->
         </vue-grid-item>
         <vue-grid-item>
           <!-- RIGHT SECTION -->
+          <div>
+            <vue-headline level="2">Accounts</vue-headline>
+            <accounts :datasource="accountGroups"></accounts>
+          </div>
         </vue-grid-item>
       </vue-grid-row>
     </vue-grid>
@@ -30,12 +45,16 @@ import VueGridItem from '@/app/shared/components/VueGridItem/VueGridItem.vue';
 import VueButton from '@/app/shared/components/VueButton/VueButton.vue';
 import VueHeadline from '@/app/shared/components/VueHeadline/VueHeadline.vue';
 import Banks from '../Banks/Banks.vue';
+import Transfers from '../Transfers/Transfers.vue';
+import Accounts from '../Accounts/Accounts.vue';
 import { IState } from '@/app/state';
 
 import { ScenarioModule } from '../module';
 import { mapState } from 'vuex';
 import { Budget } from 'budget-data-model/bin/model/budget';
 import { Bank } from 'budget-data-model/bin/model/bank';
+import { Transfer } from 'budget-data-model/bin/model/transfer';
+import { AccountGroup } from 'budget-data-model/bin/model/account-group';
 
 export default {
   metaInfo: {
@@ -49,6 +68,8 @@ export default {
     VueButton,
     VueHeadline,
     Banks,
+    Transfers,
+    Accounts,
   },
   props: ['id'],
   methods: {},
@@ -73,6 +94,27 @@ export default {
           },
         } = state;
         return Object.keys(banks).map((k) => banks[k]);
+      },
+      transfers(state: IState): Transfer[] {
+        const {
+          scenario: {
+            budget: { transfers },
+          },
+        } = state;
+
+        return transfers;
+      },
+      bankResults(state: IState): Bank[] {
+        return [];
+      },
+      accountGroups(state: IState): AccountGroup[] {
+        const {
+          scenario: {
+            budget: { accounts },
+          },
+        } = state;
+
+        return accounts;
       },
     }),
   },
@@ -111,5 +153,9 @@ export default {
 .scenario {
   margin-top: $nav-bar-height;
   min-height: 500px;
+}
+
+h2 {
+  padding-top: 1em;
 }
 </style>
