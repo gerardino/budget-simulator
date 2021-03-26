@@ -1,14 +1,19 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <md-toolbar class="md-primary">
+      <h3 class="md-title">Primary</h3>
+    </md-toolbar>
+    <!-- <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
-    </div>
+    </div> -->
     <router-view />
   </div>
 </template>
 
 <style lang="scss">
+@import "../node_modules/vue-material/dist/vue-material.min.css";
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
