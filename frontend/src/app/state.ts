@@ -9,7 +9,8 @@ export interface IState {
 
   app?: IAppState;
   auth?: IAuthState;
-  counter?: ICounterState;
+  // What's this for?
+  // counter?: ICounterState;
   budget?: IBudgetState;
   scenario?: IScenarioState;
 }

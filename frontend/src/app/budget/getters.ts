@@ -1,3 +1,4 @@
+import { Budget } from 'budget-data-model/bin/model/budget';
 import { IBudgetState } from './state';
 
 export interface IBudgetGetters {
@@ -14,4 +15,7 @@ export const BudgetGetters: IBudgetGetters = {
    *   return state.myAttribute;
    * }
    */
+  currentBudget(state: IBudgetState) {
+    return state.budgets.find((b: Budget) => b.id === state.current);
+  },
 };
